@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button onclick="getData()">列出資訊</button>
+        <table>
+            <tr>
+                <td>編號</td>
+                <td>姓名</td>
+                <td>城市</td>
+                <td>座右銘</td>
+            </tr>
+            <tbody id="myTbody"></tbody>
+        </table>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Mock.js/1.0.0/mock-min.js"
+            integrity="sha256-3h5yfyYcVemdL7msGK+LgfjdaknO7VKW4o/8bziM/ds="
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            var myTbody = document.getElementById('myTbody')
+
+            function getData() {
+                var users = Mock.mock({
+                    'list|10': [
+                        {
+                            'id|+1': 1001,
+                            name: '@cname',
+                            city: '@city(true)',
+                            word: '@cparagraph( 3, 5 )'
+                        }
+                    ]
+                })
+                showData(users.list)
+            }
+
+            function showData(data) {
+                var str = ''
+                data.forEach((item, index) => {
+                    str += `<tr>
+                                <td>${item.id}</td>
+                                <td>${item.name}</td>
+                                <td>${item.city}</td>
+                                <td>${item.word}</td>
+                            </tr>`
+                })
+                myTbody.innerHTML = str
+            }
+
+            // console.log(users.list)
+        </script>
+    </body>
+</html>
