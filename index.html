@@ -26,17 +26,18 @@
             var myTbody = document.getElementById('myTbody')
 
             function getData() {
-                var users = Mock.mock({
-                    'list|10': [
+                var userData = Mock.mock({
+                    'list|20': [
                         {
-                            'id|+1': 1001,
+                            id: '@character("upper")',
                             name: '@cname',
                             city: '@city(true)',
                             word: '@cparagraph( 3, 5 )'
                         }
                     ]
                 })
-                showData(users.list)
+                // showData(userData.list)
+                console.log(userData.list)
             }
 
             function showData(data) {
@@ -51,8 +52,6 @@
                 })
                 myTbody.innerHTML = str
             }
-
-            // console.log(users.list)
         </script>
     </body>
 </html>
